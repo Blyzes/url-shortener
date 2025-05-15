@@ -11,6 +11,10 @@ use crate::{
 
 pub async fn redirect_handler(key: String, mut state: AppState) -> impl IntoResponse {
     if let Some(cached_url) = get_cache(&mut state.redis, &key).await {
+        let _ = query!("UPDATE links SET clicks = clicks + 1 WHERE `key` = ?", key)
+            .execute(&*state.db)
+            .await
+            .expect("failed to update clicks");
         return Redirect::temporary(&cached_url).into_response();
     }
 
@@ -22,7 +26,8 @@ pub async fn redirect_handler(key: String, mut state: AppState) -> impl IntoResp
         Ok(Some(record)) => {
             let _ = query!("UPDATE links SET clicks = clicks + 1 WHERE `key` = ?", key)
                 .execute(&*state.db)
-                .await;
+                .await
+                .expect("failed to update clicks");
             // 存入 Redis 缓存，设置过期时间 1 小时
             set_cache(&mut state.redis, &key, &record.url, 3600).await;
             Redirect::temporary(&record.url).into_response()

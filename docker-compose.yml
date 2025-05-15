@@ -3,12 +3,11 @@ version: '3.8'
 services:
   app:
     build: .
-    container_name: url-shortener
+    container_name: url_shortener
     ports:
       - "3000:3000"
-    environment:
-      DATABASE_URL: mysql://user:password@mysql:3306/url_shortener
-      REDIS_URL: redis://redis:6379
+    env_file:
+      - .env
     volumes:
       - ./migrations:/app/migrations
       - ./templates:/app/templates
