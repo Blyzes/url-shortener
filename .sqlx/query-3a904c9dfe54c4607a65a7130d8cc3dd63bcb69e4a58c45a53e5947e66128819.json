@@ -1,0 +1,36 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT url, clicks FROM links WHERE `key` = ?",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "url",
+        "type_info": {
+          "type": "Blob",
+          "flags": "NOT_NULL | BLOB | NO_DEFAULT_VALUE",
+          "char_set": 224,
+          "max_size": 262140
+        }
+      },
+      {
+        "ordinal": 1,
+        "name": "clicks",
+        "type_info": {
+          "type": "Long",
+          "flags": "NOT_NULL",
+          "char_set": 63,
+          "max_size": 11
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false,
+      false
+    ]
+  },
+  "hash": "3a904c9dfe54c4607a65a7130d8cc3dd63bcb69e4a58c45a53e5947e66128819"
+}

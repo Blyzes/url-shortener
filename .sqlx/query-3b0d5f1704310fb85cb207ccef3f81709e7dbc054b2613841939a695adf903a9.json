@@ -1,0 +1,25 @@
+{
+  "db_name": "MySQL",
+  "query": "SELECT url FROM links WHERE `key` = ?",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "url",
+        "type_info": {
+          "type": "Blob",
+          "flags": "NOT_NULL | BLOB | NO_DEFAULT_VALUE",
+          "char_set": 224,
+          "max_size": 262140
+        }
+      }
+    ],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "3b0d5f1704310fb85cb207ccef3f81709e7dbc054b2613841939a695adf903a9"
+}

@@ -1,5 +1,4 @@
-use uuid::Uuid;
-
+use rand::{distributions::Alphanumeric, Rng};
 use crate::{
     db::redis::set_cache,
     models::{ShortenRequest, ShortenResponse},
@@ -8,7 +7,12 @@ use crate::{
 use sqlx::query;
 
 pub async fn shorten_handler(payload: ShortenRequest, mut state: AppState) -> ShortenResponse {
-    let key = Uuid::new_v4().to_string()[..6].to_string();
+
+    let key: String = rand::thread_rng()
+        .sample_iter(&Alphanumeric)
+        .take(6)
+        .map(char::from)
+        .collect();
 
     query!(
         "INSERT INTO links (`key`, url) VALUES (?, ?)",

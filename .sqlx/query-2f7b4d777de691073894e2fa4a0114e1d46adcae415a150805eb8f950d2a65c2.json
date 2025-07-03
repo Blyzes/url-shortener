@@ -1,0 +1,12 @@
+{
+  "db_name": "MySQL",
+  "query": "UPDATE links SET clicks = clicks + 1 WHERE `key` = ?",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Right": 1
+    },
+    "nullable": []
+  },
+  "hash": "2f7b4d777de691073894e2fa4a0114e1d46adcae415a150805eb8f950d2a65c2"
+}

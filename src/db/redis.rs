@@ -4,7 +4,7 @@ use std::sync::Arc;
 pub type RedisPool = Arc<Client>;
 
 pub async fn connect_redis() -> RedisPool {
-    let client = Client::open("redis://127.0.0.1/").expect("Invalid Redis URL");
+    let client = Client::open("redis://redis/").expect("Invalid Redis URL");
     Arc::new(client)
 }
 
