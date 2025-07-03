@@ -1,13 +1,13 @@
-use rand::{distributions::Alphanumeric, Rng};
 use crate::{
     db::redis::set_cache,
     models::{ShortenRequest, ShortenResponse},
     AppState,
 };
+use rand::distributions::Alphanumeric;
+use rand::Rng;
 use sqlx::query;
 
 pub async fn shorten_handler(payload: ShortenRequest, mut state: AppState) -> ShortenResponse {
-
     let key: String = rand::thread_rng()
         .sample_iter(&Alphanumeric)
         .take(6)
