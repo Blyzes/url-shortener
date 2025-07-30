@@ -8,7 +8,7 @@ use rand::Rng;
 use sqlx::query_scalar;
 
 pub async fn shorten_handler(payload: ShortenRequest, mut state: AppState) -> ShortenResponse {
-    let url_key = format!("url:{}", payload.url);
+    let url_key = format!("{}", payload.url);
 
     // 1. 查 Redis 是否已有原始链接对应的短链 key
     if let Some(existing_key) = get_cache(&mut state.redis, &url_key).await {
